@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable{
@@ -24,6 +26,7 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
+	@JsonIgnore // é preciso colocar essa anotation em uma associação quando temos uma associação de mão dupla strange key dos dois lados.
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	
